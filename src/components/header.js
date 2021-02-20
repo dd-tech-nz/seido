@@ -3,15 +3,59 @@ import PropTypes from "prop-types"
 import React, { useContext } from "react"
 import { FirebaseContext } from './Firebase'
 import styled from 'styled-components'
+import LogoSrc from '../images/logo_sm.png'
 
 
 const LogoutLink = styled.span`
   cursor: pointer;
-  color: red;
+  color: brown;
 
   &:hover{
     text-decoration: underline
   }
+`
+
+const HeaderWrapper = styled.header`
+    background: #95afba;
+    margin-bottom: 1.45rem;
+`
+
+const HeaderContent = styled.div`
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 1.45rem 1.0875rem;
+  display: flex;
+  position: relative;
+
+  >h1 {
+    margin-left: 12.5rem;
+    flex-grow: 1;
+
+    >a{
+      color: black;
+      text-decoration: none;
+    }
+  }
+
+  >div {
+    margin: auto 0;
+  }
+
+`
+
+const UserInfo = styled.div`
+  text-align: right;
+`
+
+const Logo = styled.div`
+  align-self: flex-start;
+  margin-left: -100px;
+  position: absolute;
+  left: -150px;
+  top: 3px;
+  background-image: url(${LogoSrc});
+  width: 94px;
+  height: 90px;
 `
 
 const Header = ({ siteTitle }) => {
@@ -23,53 +67,36 @@ const Header = ({ siteTitle }) => {
   }
 
   return (
-  <header
-    style={{
-      background: `#95afba`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-        display: 'flex',
-      }}
-    >
+  <HeaderWrapper>
+  
+      <HeaderContent>
+        
+        <Logo />
       
-    
-      <h1 style={{ margin: 0, flexGrow: 1}}>
-        <Link
-          to="/"
-          style={{
-            color: `black`,
-            textDecoration: `none`,
-          }}
-        >
-          
+      <h1>
+        <Link to="/">
           {siteTitle}
         </Link>
-      </h1>
-        <div style={{margin: 'auto 0'}}>
+        </h1>
+        
+        <div>
           {!!user && !!user.email &&
-            <div>
+            <UserInfo>
               Hello, {user.email}
-              <div style={{textAlign: 'right'}}>
+              <div>
               <LogoutLink onClick={handleLogoutClick}>
                 Logout
               </LogoutLink>
           </div>
-            </div>
+            </UserInfo>
           }
           
           
         </div>
 
       
-    </div>
-    </header>
+    </HeaderContent>
+    </HeaderWrapper>
   )
 }
 

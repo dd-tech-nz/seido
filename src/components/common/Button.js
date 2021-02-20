@@ -4,14 +4,14 @@ export const Button = styled.button`
     text-transform: uppercase;
     outline: none;
     width: 200px;
-    margin-left: 16px;
+    /* margin-left: 16px; */
     padding: 8px 16px;
     background: #1E56AA;
     color: white;
     border-radius: 100px;
     cursor: pointer;
     ${props => props.block ? 'display: block; width: 100%;' : ''}
-    ${props => props.register ? 'background: green;' : ''}
+    ${props => props.register ? 'background: green; margin-left: 16px;' : ''}
 
     &:hover{
         transform: translateY(-3px);
