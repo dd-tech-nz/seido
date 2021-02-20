@@ -1,35 +1,77 @@
-import { Link } from "gatsby"
+import { Link, navigate } from "gatsby"
 import PropTypes from "prop-types"
-import React from "react"
+import React, { useContext } from "react"
+import { FirebaseContext } from './Firebase'
+import styled from 'styled-components'
 
-const Header = ({ siteTitle }) => (
+
+const LogoutLink = styled.span`
+  cursor: pointer;
+  color: red;
+
+  &:hover{
+    text-decoration: underline
+  }
+`
+
+const Header = ({ siteTitle }) => {
+  const { firebase, user } = useContext(FirebaseContext)
+  console.log(firebase, user)
+
+  function handleLogoutClick() {
+    firebase.logout().then(() => navigate('/'))
+  }
+
+  return (
   <header
     style={{
-      background: `rebeccapurple`,
+      background: `#95afba`,
       marginBottom: `1.45rem`,
     }}
   >
+    
     <div
       style={{
         margin: `0 auto`,
         maxWidth: 960,
         padding: `1.45rem 1.0875rem`,
+        display: 'flex',
       }}
     >
-      <h1 style={{ margin: 0 }}>
+      
+    
+      <h1 style={{ margin: 0, flexGrow: 1}}>
         <Link
           to="/"
           style={{
-            color: `white`,
+            color: `black`,
             textDecoration: `none`,
           }}
         >
+          
           {siteTitle}
         </Link>
       </h1>
+        <div style={{margin: 'auto 0'}}>
+          {!!user && !!user.email &&
+            <div>
+              Hello, {user.email}
+              <div style={{textAlign: 'right'}}>
+              <LogoutLink onClick={handleLogoutClick}>
+                Logout
+              </LogoutLink>
+          </div>
+            </div>
+          }
+          
+          
+        </div>
+
+      
     </div>
-  </header>
-)
+    </header>
+  )
+}
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
