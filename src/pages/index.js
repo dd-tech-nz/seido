@@ -109,7 +109,11 @@ const IndexPage = () => {
   function handleLoginClick() {
     navigate('/login')
   }
-  
+
+  function handleRegisterClick() {
+    navigate('/register')
+  }
+
   return (
   <HeroWrapper>
     <SEO title="Seido Dojo Management" />
@@ -125,7 +129,7 @@ const IndexPage = () => {
         <Button type="submit" onClick={handleLoginClick}>
             Login
         </Button>
-        <Button type="submit" register>
+        <Button type="submit" register onClick={handleLoginClick}>
           
             Register
          
