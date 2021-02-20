@@ -129,7 +129,7 @@ const IndexPage = () => {
         <Button type="submit" onClick={handleLoginClick}>
             Login
         </Button>
-        <Button type="submit" register onClick={handleLoginClick}>
+        <Button type="submit" register onClick={handleRegisterClick}>
           
             Register
          
